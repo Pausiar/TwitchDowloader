@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pausiar.github.io/TwitchDowloader/sitemap.xml

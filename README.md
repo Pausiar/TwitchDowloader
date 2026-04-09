@@ -57,3 +57,27 @@ git push origin v1.0.0
 ### Descarga
 
 Ve a la sección **Releases** del repositorio y descarga `TwitchDownloader.exe` desde la última versión.
+
+## 🌐 GitHub Pages y SEO
+
+Se añadió una landing en `docs/` pensada para posicionar en Google y facilitar la descarga de la app.
+
+### Archivos incluidos
+
+- `docs/index.html`: página principal con contenido SEO, FAQ y botón de descarga.
+- `docs/styles.css`: estilos responsive para móvil y escritorio.
+- `docs/robots.txt`: reglas para crawlers y referencia del sitemap.
+- `docs/sitemap.xml`: mapa del sitio para indexación.
+
+### Activar GitHub Pages
+
+1. En GitHub, ve a **Settings > Pages**.
+2. En **Build and deployment**, selecciona:
+	- **Source**: Deploy from a branch
+	- **Branch**: `main`
+	- **Folder**: `/docs`
+3. Guarda y espera la publicación.
+
+La URL esperada es:
+
+`https://pausiar.github.io/TwitchDowloader/`
