@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" role="img" aria-labelledby="title desc">
+  <title id="title">Vista de Twitch VOD Downloader</title>
+  <desc id="desc">Ilustracion de la interfaz de la aplicacion con campo de URL, carpeta de destino, boton de descarga y barra de progreso.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7f4ec" />
+      <stop offset="100%" stop-color="#efe7d9" />
+    </linearGradient>
+    <linearGradient id="btn" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e66a2d" />
+      <stop offset="100%" stop-color="#f09340" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#9c8a6f" flood-opacity="0.24" />
+    </filter>
+  </defs>
+
+  <rect width="1280" height="760" fill="url(#bg)" />
+
+  <rect x="170" y="80" width="940" height="600" rx="18" fill="#fdfcf8" stroke="#d7c9b1" filter="url(#shadow)" />
+  <rect x="170" y="80" width="940" height="52" rx="18" fill="#f1ebde" />
+  <circle cx="204" cy="106" r="7" fill="#e4724d" />
+  <circle cx="228" cy="106" r="7" fill="#efb03a" />
+  <circle cx="252" cy="106" r="7" fill="#70ba6c" />
+
+  <text x="640" y="180" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="700" fill="#1f1a14">Twitch VOD Downloader</text>
+
+  <rect x="230" y="215" width="820" height="124" rx="12" fill="#ffffff" stroke="#d7c9b1" />
+  <text x="254" y="247" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#5f5341">Link del VOD de Twitch</text>
+  <rect x="254" y="261" width="772" height="46" rx="8" fill="#f8f5ee" stroke="#d7c9b1" />
+  <text x="270" y="291" font-family="Consolas, monospace" font-size="16" fill="#7f6f58">https://www.twitch.tv/videos/123456789</text>
+
+  <rect x="230" y="355" width="820" height="106" rx="12" fill="#ffffff" stroke="#d7c9b1" />
+  <text x="254" y="387" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#5f5341">Carpeta de destino</text>
+  <rect x="254" y="400" width="620" height="40" rx="8" fill="#f8f5ee" stroke="#d7c9b1" />
+  <text x="270" y="426" font-family="Consolas, monospace" font-size="15" fill="#7f6f58">C:/Users/TuUsuario/Downloads</text>
+  <rect x="890" y="400" width="136" height="40" rx="8" fill="#ffffff" stroke="#d7c9b1" />
+  <text x="958" y="426" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#2f2922">Examinar...</text>
+
+  <rect x="430" y="490" width="420" height="58" rx="12" fill="url(#btn)" />
+  <text x="640" y="526" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff">Descargar en Maxima Calidad</text>
+
+  <rect x="230" y="568" width="820" height="76" rx="12" fill="#ffffff" stroke="#d7c9b1" />
+  <rect x="254" y="593" width="772" height="16" rx="8" fill="#efe7d8" />
+  <rect x="254" y="593" width="472" height="16" rx="8" fill="#0f6f77" />
+  <text x="254" y="631" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#5f5341">Descargando... 61.2% - Velocidad: 6.3MiB/s - Tiempo restante: 03:21</text>
+</svg>
