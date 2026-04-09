@@ -37,3 +37,23 @@ python twitch_downloader.py
 - ✅ Interfaz gráfica sencilla
 - ✅ Barra de progreso
 - ✅ Soporte para VODs y clips
+
+## 🪟 Ejecutable para Windows (.exe)
+
+Este repositorio genera automáticamente un ejecutable de Windows en GitHub Releases.
+
+### Cómo publicar una nueva versión
+
+1. Sube tus cambios a `main`.
+2. Crea y sube un tag con formato `vX.Y.Z`.
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+3. GitHub Actions compilará el `.exe` en Windows y lo publicará en Releases.
+
+### Descarga
+
+Ve a la sección **Releases** del repositorio y descarga `TwitchDownloader.exe` desde la última versión.
