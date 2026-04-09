@@ -19,6 +19,13 @@ class TwitchDownloader:
         self.root.title("Twitch VOD Downloader")
         self.root.geometry("600x400")
         self.root.resizable(True, True)
+
+        # Icono de la ventana
+        try:
+            icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "logo.ico")
+            self.root.iconbitmap(icon_path)
+        except Exception:
+            pass
         
         # Variables
         self.url_var = tk.StringVar()

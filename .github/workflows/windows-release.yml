@@ -30,7 +30,7 @@ jobs:
 
       - name: Build EXE with PyInstaller
         run: |
-          pyinstaller --noconfirm --onefile --windowed --name TwitchDownloader twitch_downloader.py
+          pyinstaller --noconfirm --onefile --windowed --name TwitchDownloader --icon assets/logo.ico --add-data "assets/logo.ico;assets" twitch_downloader.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

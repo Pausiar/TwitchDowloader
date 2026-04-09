@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Twitch VOD Downloader logo">
+  <defs>
+    <linearGradient id="bubbleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Speech bubble body -->
+  <rect x="32" y="24" width="448" height="348" rx="56" ry="56" fill="url(#bubbleGrad)"/>
+
+  <!-- Speech bubble tail (bottom-left pointer) -->
+  <polygon points="64,372 200,372 64,488" fill="#7c3aed"/>
+  <!-- Smooth join between body and tail -->
+  <rect x="32" y="340" width="100" height="45" fill="url(#bubbleGrad)"/>
+
+  <!-- Download arrow: vertical stem -->
+  <line x1="256" y1="88" x2="256" y2="272" stroke="white" stroke-width="36" stroke-linecap="round"/>
+
+  <!-- Download arrow: left arm of chevron -->
+  <line x1="256" y1="272" x2="152" y2="180" stroke="white" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Download arrow: right arm of chevron -->
+  <line x1="256" y1="272" x2="360" y2="180" stroke="white" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Download arrow: horizontal baseline -->
+  <line x1="144" y1="316" x2="368" y2="316" stroke="white" stroke-width="36" stroke-linecap="round"/>
+</svg>
