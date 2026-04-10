@@ -226,6 +226,23 @@ footer {
   font-weight: 600;
 }
 
+.cookie-preferences-btn {
+  margin-top: 14px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cookie-preferences-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .cookie-banner {
   position: fixed;
   left: 0;
@@ -355,5 +372,10 @@ footer {
 
   .btn-consent {
     flex: 1 1 160px;
+  }
+
+  .cookie-preferences-btn {
+    width: 100%;
+    text-align: center;
   }
 }

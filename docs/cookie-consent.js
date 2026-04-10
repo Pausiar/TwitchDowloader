@@ -32,10 +32,15 @@
     document.head.appendChild(script);
   }
 
+  function openBanner(banner) {
+    banner.hidden = false;
+  }
+
   function setupBanner() {
     var banner = document.getElementById("cookie-banner");
     var acceptButton = document.getElementById("cookie-accept");
     var rejectButton = document.getElementById("cookie-reject");
+    var preferencesButtons = document.querySelectorAll("[data-cookie-preferences]");
     var consent = readConsent();
 
     if (!banner || !acceptButton || !rejectButton) {
@@ -48,15 +53,11 @@
     if (consent === "accepted") {
       banner.hidden = true;
       loadAdsense();
-      return;
-    }
-
-    if (consent === "rejected") {
+    } else if (consent === "rejected") {
       banner.hidden = true;
-      return;
+    } else {
+      openBanner(banner);
     }
-
-    banner.hidden = false;
 
     acceptButton.addEventListener("click", function () {
       writeConsent("accepted");
@@ -67,6 +68,12 @@
     rejectButton.addEventListener("click", function () {
       writeConsent("rejected");
       banner.hidden = true;
+    });
+
+    preferencesButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        openBanner(banner);
+      });
     });
   }
 
