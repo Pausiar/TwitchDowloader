@@ -213,6 +213,110 @@ footer {
   font-size: 0.95rem;
 }
 
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.footer-links a,
+.cookie-copy a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  padding: 0 0 18px;
+}
+
+.cookie-banner-inner {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(26, 23, 18, 0.96);
+  color: #fff9ef;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 18px 40px rgba(26, 23, 18, 0.24);
+}
+
+.cookie-title {
+  margin: 0 0 4px;
+  font-family: "Outfit", "Segoe UI", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.cookie-copy {
+  margin: 0;
+}
+
+.cookie-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn-consent {
+  color: #ffffff;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.btn-consent:hover {
+  background: #14858e;
+}
+
+.legal-shell {
+  padding: 48px 0 72px;
+}
+
+.legal-page-header {
+  margin-bottom: 18px;
+}
+
+.legal-page-header h1 {
+  margin-bottom: 8px;
+}
+
+.legal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.legal-nav a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--accent);
+  background: #e8f5f6;
+  border: 1px solid #b9dce0;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.legal-section {
+  margin-top: 16px;
+}
+
+.legal-section h2 {
+  margin-bottom: 8px;
+}
+
 .small {
   font-size: 0.9rem;
   color: var(--muted);
@@ -234,5 +338,22 @@ footer {
 
   .btn {
     text-align: center;
+  }
+
+  .cookie-banner {
+    padding-bottom: 12px;
+  }
+
+  .cookie-banner-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cookie-actions {
+    width: 100%;
+  }
+
+  .btn-consent {
+    flex: 1 1 160px;
   }
 }
