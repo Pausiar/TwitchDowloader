@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - copilot/deploy-latest-version-to-vercel
   workflow_dispatch:
 
 jobs:
