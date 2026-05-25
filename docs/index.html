@@ -49,6 +49,8 @@
         "name": "Twitch VOD Downloader",
         "softwareVersion": "1.0.0",
         "inLanguage": ["es", "en"],
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Windows",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -56,11 +58,32 @@
         },
         "downloadUrl": "https://github.com/Pausiar/TwitchDowloader/releases/download/v1.0.0/TwitchDownloader.exe",
         "url": "https://pausiar.github.io/TwitchDowloader/",
-        "description": "Aplicacion para descargar directos de Twitch, VODs y clips en alta calidad usando un enlace.",
+        "description": "Aplicacion gratuita para descargar directos de Twitch, VODs y clips en alta calidad (hasta 1080p 60fps) usando un enlace. Compatible con Windows, sin configuracion adicional.",
+        "featureList": [
+          "Descarga VODs y clips de Twitch por URL",
+          "Calidad maxima disponible hasta 1080p 60fps",
+          "Progreso de descarga en tiempo real",
+          "Seleccion de carpeta de destino",
+          "Sin dependencias adicionales",
+          "Gratis y de codigo abierto"
+        ],
         "publisher": {
           "@type": "Organization",
-          "name": "Pausiar"
+          "name": "Pausiar",
+          "url": "https://github.com/Pausiar"
         }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Pausiar",
+        "url": "https://pausiar.github.io/TwitchDowloader/",
+        "description": "Desarrollador independiente de herramientas de codigo abierto para creadores de contenido.",
+        "sameAs": [
+          "https://github.com/Pausiar"
+        ]
       }
     </script>
     <script type="application/ld+json">
@@ -129,6 +152,7 @@
         <nav class="quick-nav" aria-label="Navegacion de la pagina">
           <a href="#descarga">Descarga</a>
           <a href="#vista-app">Vista de la app</a>
+          <a href="#guia">Guia practica</a>
           <a href="#faq">FAQ</a>
         </nav>
         <div class="cta-row">
@@ -149,6 +173,23 @@
     </header>
 
     <main>
+      <section id="que-es">
+        <div class="container card">
+          <h2>¿Qué es Twitch VOD Downloader?</h2>
+          <p>
+            Twitch VOD Downloader es una aplicacion gratuita para Windows que descarga videos de Twitch
+            (VODs, streams pasados y clips) directamente a tu PC. Pega el enlace del video, elige la
+            carpeta de destino y la app guarda el archivo en la maxima calidad disponible — hasta 1080p 60fps —
+            en un formato compatible con Premiere Pro, DaVinci Resolve y VLC.
+          </p>
+          <p>
+            Es de codigo abierto, no requiere dependencias adicionales y esta disenada para creadores
+            de contenido, editores de video y cualquier usuario que quiera conservar contenido de Twitch
+            para uso personal offline. No esta afiliada ni respaldada por Twitch Interactive, Inc.
+          </p>
+        </div>
+      </section>
+
       <section id="vista-app">
         <div class="container card preview-card">
           <h2>Asi se ve la interfaz de la aplicacion</h2>
@@ -211,6 +252,36 @@
           <p>
             Al finalizar, el video estará en tu equipo en un formato compatible con Premiere Pro,
             DaVinci Resolve, VLC y cualquier editor o reproductor estándar.
+          </p>
+        </div>
+      </section>
+
+      <section id="guia">
+        <div class="container card">
+          <h2>Guia practica y criterios de uso responsable</h2>
+          <p>
+            Si necesitas una explicacion mas completa, hemos preparado una guia editorial con
+            recomendaciones de calidad, errores frecuentes y limites tecnicos habituales al
+            descargar VODs de Twitch.
+          </p>
+          <p>
+            Esta guia incluye procedimientos paso a paso para comprobar si un enlace es valido,
+            consejos para evitar archivos incompletos y pautas de cumplimiento de derechos de
+            autor para uso personal.
+          </p>
+          <ul class="klist">
+            <li>Checklist previo: visibilidad del VOD, estado del canal y disponibilidad regional.</li>
+            <li>Diagnostico de fallos: enlaces rotos, restricciones y cortes por conexion inestable.</li>
+            <li>Buenas practicas para archivar y editar material propio sin perder calidad.</li>
+            <li>Recomendaciones de cumplimiento: uso legitimo, permisos y respeto a terminos de servicio.</li>
+          </ul>
+          <p>
+            <a class="btn btn-secondary" href="guia-descarga-responsable.html"
+              >Leer guia completa de descarga responsable</a
+            >
+          </p>
+          <p class="small">
+            Contenido revisado por el mantenedor del proyecto. Ultima actualizacion: 25 de mayo de 2026.
           </p>
         </div>
       </section>
@@ -317,6 +388,7 @@
           <a href="#descarga">boton de descarga</a> o volver a la <a href="#vista-app">vista de la app</a>.
         </p>
         <nav class="footer-links" aria-label="Enlaces legales y de ayuda">
+          <a href="guia-descarga-responsable.html">Guia de uso responsable</a>
           <a href="faq.html">FAQ</a>
           <a href="politica-privacidad.html">Politica de privacidad</a>
           <a href="politica-cookies.html">Politica de cookies</a>

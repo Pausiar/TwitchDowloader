@@ -31,6 +31,7 @@ Twitch VOD Downloader is a free, open-source Windows application that lets users
 - Latest release: https://github.com/Pausiar/TwitchDowloader/releases/latest
 - Source code (GitHub): https://github.com/Pausiar/TwitchDowloader
 - FAQ: https://pausiar.github.io/TwitchDowloader/faq.html
+- Guia de descarga responsable: https://pausiar.github.io/TwitchDowloader/guia-descarga-responsable.html
 
 ## Notes
 - Not affiliated with or endorsed by Twitch Interactive, Inc.
