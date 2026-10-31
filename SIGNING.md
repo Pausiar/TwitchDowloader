@@ -1,9 +1,9 @@
 # Firma del ejecutable y del instalador
 
-Estado actual: **pendiente**. Sin las credenciales de SignPath configuradas, el flujo
-[`.github/workflows/windows-release.yml`](.github/workflows/windows-release.yml) compila y publica
-`TwitchDownloader.exe` y `TwitchDownloaderSetup.exe` sin firmar y lo indica en las notas de la
-release. No se anuncia una firma que todavía no existe.
+Estado actual: **pendiente de aprobación de SignPath Foundation**. Sin las credenciales de
+SignPath, el flujo [`.github/workflows/windows-release.yml`](.github/workflows/windows-release.yml)
+compila y publica `TwitchDownloader.exe` y `TwitchDownloaderSetup.exe` sin firmar y lo indica en
+las notas de la release. No se anuncia una firma que todavía no existe.
 
 ## Por qué SignPath Foundation
 
@@ -35,24 +35,61 @@ mostrando el aviso.
 El instalador empaqueta el portable firmado, así que el EXE conserva su firma tras instalarlo.
 Sin token, los pasos de firma se omiten y el flujo sigue funcionando en modo sin firmar.
 
-## Activación
+## Solicitud a SignPath Foundation
 
-1. Solicitar acceso a SignPath Foundation y esperar la aprobación.
-2. En SignPath, crear el proyecto y subir dos configuraciones de artefacto: la del portable y la
-   del instalador. La raíz de ambas es `<zip-file>` porque `actions/upload-artifact` comprime cada
-   fichero en un ZIP. Crear también la política de firma de release.
-3. Anotar el identificador de organización y los slugs de proyecto, política y ambas
+La cuenta, la organización y el token solo los puede crear el titular del proyecto. Mientras
+Foundation no apruebe la solicitud, las releases seguirán saliendo sin firmar.
+
+Datos para el formulario de <https://signpath.org/apply>:
+
+- Proyecto: Twitch VOD Downloader
+- Repositorio: <https://github.com/Pausiar/TwitchDowloader>
+- Licencia: MIT
+- Tecnología: Python, PyInstaller e Inno Setup
+- Build: GitHub Actions, `.github/workflows/windows-release.yml`, tags `v*`
+- Artefactos: `TwitchDownloader.exe` y `TwitchDownloaderSetup.exe`
+- Web: <https://pausiar.github.io/TwitchDowloader/>
+- Descargas: <https://github.com/Pausiar/TwitchDowloader/releases>
+- Mantenedor: Pausiar
+
+Texto propuesto (en inglés):
+
+> Twitch VOD Downloader is a free, open-source Windows application (MIT) for downloading Twitch
+> VODs and clips. It is distributed as a portable PyInstaller executable and an Inno Setup
+> installer, both built from tagged releases in public GitHub Actions. The app has no telemetry,
+> no accounts and no bundled third-party binaries; yt-dlp is installed as a Python dependency at
+> build time. We request code signing to protect users from tampered downloads and to establish
+> the publisher identity of the releases.
+
+## Activación tras la aprobación
+
+1. En SignPath, crear el proyecto y subir las dos configuraciones de artefacto. La raíz de ambas es
+   `<zip-file>` porque `actions/upload-artifact` comprime cada fichero en un ZIP. Crear también la
+   política de firma de release.
+2. Anotar el identificador de organización y los slugs de proyecto, política y ambas
    configuraciones.
-4. Configurar en GitHub:
+3. Configurar GitHub desde la raíz del repositorio. El token se pega en el prompt, no en el
+   historial:
 
-| Nombre | Tipo | Valor |
-| --- | --- | --- |
-| `SIGNPATH_API_TOKEN` | Secret | Token de API de SignPath |
-| `SIGNPATH_ORGANIZATION_ID` | Variable | ID de la organización |
-| `SIGNPATH_PROJECT_SLUG` | Variable | Slug del proyecto |
-| `SIGNPATH_SIGNING_POLICY_SLUG` | Variable | Slug de la política de firma |
-| `SIGNPATH_ARTIFACT_CONFIGURATION_SLUG` | Variable | Slug de la configuración del portable |
-| `SIGNPATH_INSTALLER_ARTIFACT_CONFIGURATION_SLUG` | Variable | Slug de la configuración del instalador |
+```bash
+gh secret set SIGNPATH_API_TOKEN
+gh variable set SIGNPATH_ORGANIZATION_ID --body "<organization-id>"
+gh variable set SIGNPATH_PROJECT_SLUG --body "<project-slug>"
+gh variable set SIGNPATH_SIGNING_POLICY_SLUG --body "<signing-policy-slug>"
+gh variable set SIGNPATH_ARTIFACT_CONFIGURATION_SLUG --body "<portable-config-slug>"
+gh variable set SIGNPATH_INSTALLER_ARTIFACT_CONFIGURATION_SLUG --body "<installer-config-slug>"
+```
+
+4. Probar el flujo sin publicar release:
+
+```bash
+gh workflow run windows-release.yml --ref main
+gh run watch
+```
+
+Los pasos `Sign EXE with SignPath` y `Sign installer with SignPath` deben ejecutarse, y
+`Get-AuthenticodeSignature` debe devolver `Valid` para ambos binarios. Si el token existe pero
+falta alguna variable, el flujo falla antes de compilar y dice cuáles faltan.
 
 5. Publicar un tag `vX.Y.Z`. Al cambiar `APP_VERSION` en `twitch_downloader.py`, actualizar también
    las cuatro cifras de `version_info.txt`. El número de versión del instalador se toma de
