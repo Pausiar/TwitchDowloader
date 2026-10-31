@@ -51,14 +51,15 @@ jobs:
           SIGNPATH_PROJECT_SLUG: ${{ vars.SIGNPATH_PROJECT_SLUG }}
           SIGNPATH_SIGNING_POLICY_SLUG: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
           SIGNPATH_ARTIFACT_CONFIGURATION_SLUG: ${{ vars.SIGNPATH_ARTIFACT_CONFIGURATION_SLUG }}
+          SIGNPATH_INSTALLER_ARTIFACT_CONFIGURATION_SLUG: ${{ vars.SIGNPATH_INSTALLER_ARTIFACT_CONFIGURATION_SLUG }}
         run: |
           if [ -z "$SIGNPATH_API_TOKEN" ]; then
             echo "enabled=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::SignPath is not configured. The EXE will be published unsigned."
+            echo "::notice::SignPath is not configured. The EXE and the installer will be published unsigned."
             exit 0
           fi
           missing=""
-          for name in SIGNPATH_ORGANIZATION_ID SIGNPATH_PROJECT_SLUG SIGNPATH_SIGNING_POLICY_SLUG SIGNPATH_ARTIFACT_CONFIGURATION_SLUG; do
+          for name in SIGNPATH_ORGANIZATION_ID SIGNPATH_PROJECT_SLUG SIGNPATH_SIGNING_POLICY_SLUG SIGNPATH_ARTIFACT_CONFIGURATION_SLUG SIGNPATH_INSTALLER_ARTIFACT_CONFIGURATION_SLUG; do
             if [ -z "${!name}" ]; then
               missing="$missing $name"
             fi
@@ -106,11 +107,75 @@ jobs:
             throw "Unexpected signature status: $($signature.Status)"
           }
 
-      - name: Generate SHA256 checksum
+      - name: Build installer with Inno Setup
         shell: pwsh
         run: |
-          $hash = (Get-FileHash -Path "dist/TwitchDownloader.exe" -Algorithm SHA256).Hash.ToLower()
-          "$hash  TwitchDownloader.exe" | Out-File -FilePath "SHA256SUMS.txt" -Encoding ascii
+          $version = (Select-String -Path "twitch_downloader.py" -Pattern 'APP_VERSION = "([^"]+)"').Matches[0].Groups[1].Value
+          if (-not $version) { throw "APP_VERSION not found in twitch_downloader.py" }
+          $iscc = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $iscc)) {
+            choco install innosetup --no-progress -y
+            $iscc = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+          }
+          if (-not (Test-Path $iscc)) { throw "Inno Setup compiler not found" }
+          & $iscc "/DAppVersion=$version" "installer\TwitchDownloader.iss"
+          if ($LASTEXITCODE -ne 0) { throw "ISCC failed with exit code $LASTEXITCODE" }
+          if (-not (Test-Path "dist\TwitchDownloaderSetup.exe")) { throw "Installer was not generated" }
+
+      - name: Upload unsigned installer
+        id: unsigned_installer
+        if: steps.signpath_config.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: unsigned-installer
+          path: dist/TwitchDownloaderSetup.exe
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Sign installer with SignPath
+        if: steps.signpath_config.outputs.enabled == 'true'
+        uses: signpath/github-action-submit-signing-request@v3
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+          signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+          artifact-configuration-slug: ${{ vars.SIGNPATH_INSTALLER_ARTIFACT_CONFIGURATION_SLUG }}
+          github-artifact-id: ${{ steps.unsigned_installer.outputs.artifact-id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-for-completion: true
+          wait-for-completion-timeout-in-seconds: 600
+          output-artifact-directory: signed-installer
+
+      - name: Use signed installer
+        if: steps.signpath_config.outputs.enabled == 'true'
+        shell: bash
+        run: |
+          signed_installer="$(find signed-installer -type f -name TwitchDownloaderSetup.exe -print -quit)"
+          if [ -z "$signed_installer" ]; then
+            echo "::error::SignPath did not return TwitchDownloaderSetup.exe"
+            exit 1
+          fi
+          cp "$signed_installer" dist/TwitchDownloaderSetup.exe
+
+      - name: Verify installer signature
+        if: steps.signpath_config.outputs.enabled == 'true'
+        shell: pwsh
+        run: |
+          $signature = Get-AuthenticodeSignature -FilePath "dist/TwitchDownloaderSetup.exe"
+          $signature | Format-List Status, StatusMessage, SignerCertificate
+          if ($signature.Status -ne "Valid") {
+            throw "Unexpected signature status: $($signature.Status)"
+          }
+
+      - name: Generate SHA256 checksums
+        shell: pwsh
+        run: |
+          $lines = foreach ($file in @("dist\TwitchDownloader.exe", "dist\TwitchDownloaderSetup.exe")) {
+            $hash = (Get-FileHash -Path $file -Algorithm SHA256).Hash.ToLower()
+            "$hash  $(Split-Path -Path $file -Leaf)"
+          }
+          $lines | Out-File -FilePath "SHA256SUMS.txt" -Encoding ascii
 
       - name: Upload release artifact
         uses: actions/upload-artifact@v4
@@ -118,6 +183,7 @@ jobs:
           name: TwitchDownloader-windows
           path: |
             dist/TwitchDownloader.exe
+            dist/TwitchDownloaderSetup.exe
             SHA256SUMS.txt
           if-no-files-found: error
           retention-days: 30
@@ -132,17 +198,18 @@ jobs:
           {
             echo "## Twitch VOD Downloader $TAG"
             echo ""
-            echo "- Ejecutable: \`TwitchDownloader.exe\` (Windows 10/11, x64)."
-            echo "- Integridad: compara el SHA-256 con \`SHA256SUMS.txt\`."
+            echo "- Portable: \`TwitchDownloader.exe\` (Windows 10/11, x64). No requiere instalación."
+            echo "- Instalador: \`TwitchDownloaderSetup.exe\` (crea accesos directos y desinstalador)."
+            echo "- Integridad: compara el SHA-256 de cada archivo con \`SHA256SUMS.txt\`."
             echo ""
             echo '```powershell'
-            echo "Get-FileHash .\\TwitchDownloader.exe -Algorithm SHA256"
+            echo "Get-FileHash .\\TwitchDownloader.exe, .\\TwitchDownloaderSetup.exe -Algorithm SHA256"
             echo '```'
             echo ""
             if [ "$SIGNED" = "true" ]; then
-              echo "> Binario firmado con SignPath. Windows puede tardar en reconocer el certificado mientras se propaga la reputación del editor."
+              echo "> Binarios firmados con SignPath. Windows puede tardar en reconocer el certificado mientras se propaga la reputación del editor."
             else
-              echo "> **Aviso:** esta compilación no está firmada. SmartScreen puede mostrar una advertencia de editor desconocido hasta que se active la firma con SignPath Foundation."
+              echo "> **Aviso:** esta compilación no está firmada. SmartScreen puede mostrar una advertencia de editor desconocido al abrir el instalador o el portable hasta que se active la firma con SignPath Foundation."
             fi
             echo ""
             echo "Requisitos, límites de uso y responsabilidad: https://pausiar.github.io/TwitchDowloader/terminos.html"
@@ -157,4 +224,5 @@ jobs:
           generate_release_notes: true
           files: |
             dist/TwitchDownloader.exe
+            dist/TwitchDownloaderSetup.exe
             SHA256SUMS.txt
