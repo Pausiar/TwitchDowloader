@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 jobs:
   build-windows:
@@ -30,19 +31,130 @@ jobs:
 
       - name: Build EXE with PyInstaller
         run: |
-          pyinstaller --noconfirm --onefile --windowed --name TwitchDownloader --icon assets/logo.ico --add-data "assets/logo.ico;assets" twitch_downloader.py
+          pyinstaller --noconfirm --onefile --windowed --name TwitchDownloader --version-file version_info.txt --icon assets/logo.ico --add-data "assets/logo.ico;assets" twitch_downloader.py
 
-      - name: Upload artifact
+      - name: Upload unsigned artifact
+        id: unsigned
+        uses: actions/upload-artifact@v4
+        with:
+          name: unsigned-windows
+          path: dist/TwitchDownloader.exe
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Check SignPath configuration
+        id: signpath_config
+        shell: bash
+        env:
+          SIGNPATH_API_TOKEN: ${{ secrets.SIGNPATH_API_TOKEN }}
+          SIGNPATH_ORGANIZATION_ID: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          SIGNPATH_PROJECT_SLUG: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+          SIGNPATH_SIGNING_POLICY_SLUG: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+          SIGNPATH_ARTIFACT_CONFIGURATION_SLUG: ${{ vars.SIGNPATH_ARTIFACT_CONFIGURATION_SLUG }}
+        run: |
+          if [ -z "$SIGNPATH_API_TOKEN" ]; then
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::SignPath is not configured. The EXE will be published unsigned."
+            exit 0
+          fi
+          missing=""
+          for name in SIGNPATH_ORGANIZATION_ID SIGNPATH_PROJECT_SLUG SIGNPATH_SIGNING_POLICY_SLUG SIGNPATH_ARTIFACT_CONFIGURATION_SLUG; do
+            if [ -z "${!name}" ]; then
+              missing="$missing $name"
+            fi
+          done
+          if [ -n "$missing" ]; then
+            echo "::error::SignPath token is set but required repository variables are missing:$missing"
+            exit 1
+          fi
+          echo "enabled=true" >> "$GITHUB_OUTPUT"
+
+      - name: Sign EXE with SignPath
+        id: signpath
+        if: steps.signpath_config.outputs.enabled == 'true'
+        uses: signpath/github-action-submit-signing-request@v3
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+          signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+          artifact-configuration-slug: ${{ vars.SIGNPATH_ARTIFACT_CONFIGURATION_SLUG }}
+          github-artifact-id: ${{ steps.unsigned.outputs.artifact-id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-for-completion: true
+          wait-for-completion-timeout-in-seconds: 600
+          output-artifact-directory: signed
+
+      - name: Use signed EXE
+        if: steps.signpath_config.outputs.enabled == 'true'
+        shell: bash
+        run: |
+          signed_exe="$(find signed -type f -name TwitchDownloader.exe -print -quit)"
+          if [ -z "$signed_exe" ]; then
+            echo "::error::SignPath did not return TwitchDownloader.exe"
+            exit 1
+          fi
+          cp "$signed_exe" dist/TwitchDownloader.exe
+
+      - name: Verify Authenticode signature
+        if: steps.signpath_config.outputs.enabled == 'true'
+        shell: pwsh
+        run: |
+          $signature = Get-AuthenticodeSignature -FilePath "dist/TwitchDownloader.exe"
+          $signature | Format-List Status, StatusMessage, SignerCertificate
+          if ($signature.Status -ne "Valid") {
+            throw "Unexpected signature status: $($signature.Status)"
+          }
+
+      - name: Generate SHA256 checksum
+        shell: pwsh
+        run: |
+          $hash = (Get-FileHash -Path "dist/TwitchDownloader.exe" -Algorithm SHA256).Hash.ToLower()
+          "$hash  TwitchDownloader.exe" | Out-File -FilePath "SHA256SUMS.txt" -Encoding ascii
+
+      - name: Upload release artifact
         uses: actions/upload-artifact@v4
         with:
           name: TwitchDownloader-windows
-          path: dist/TwitchDownloader.exe
+          path: |
+            dist/TwitchDownloader.exe
+            SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Compose release body
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        env:
+          SIGNED: ${{ steps.signpath_config.outputs.enabled }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          {
+            echo "## Twitch VOD Downloader $TAG"
+            echo ""
+            echo "- Ejecutable: \`TwitchDownloader.exe\` (Windows 10/11, x64)."
+            echo "- Integridad: compara el SHA-256 con \`SHA256SUMS.txt\`."
+            echo ""
+            echo '```powershell'
+            echo "Get-FileHash .\\TwitchDownloader.exe -Algorithm SHA256"
+            echo '```'
+            echo ""
+            if [ "$SIGNED" = "true" ]; then
+              echo "> Binario firmado con SignPath. Windows puede tardar en reconocer el certificado mientras se propaga la reputación del editor."
+            else
+              echo "> **Aviso:** esta compilación no está firmada. SmartScreen puede mostrar una advertencia de editor desconocido hasta que se active la firma con SignPath Foundation."
+            fi
+            echo ""
+            echo "Requisitos, límites de uso y responsabilidad: https://pausiar.github.io/TwitchDowloader/terminos.html"
+          } > RELEASE_BODY.md
 
       - name: Publish GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          name: TwitchDownloader ${{ github.ref_name }}
+          name: Twitch VOD Downloader ${{ github.ref_name }}
+          body_path: RELEASE_BODY.md
           generate_release_notes: true
           files: |
             dist/TwitchDownloader.exe
+            SHA256SUMS.txt

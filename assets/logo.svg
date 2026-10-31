@@ -1,45 +1,10 @@
-<svg width="512" height="512" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg">
-  <title>Twitch VOD Downloader</title>
-  <desc>Bocadillo morado con flecha de descarga</desc>
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#c084fc"/>
-      <stop offset="100%" style="stop-color:#7b1fd4"/>
-    </linearGradient>
-  </defs>
-
-  <!-- EXTERIOR -->
-  <path d="
-    M 178 108
-    Q 118 108 118 168
-    L 118 482
-    Q 118 542 178 542
-    L 220 542
-    L 196 610
-    Q 188 636 220 618
-    L 316 542
-    L 407 542
-    L 562 390
-    L 562 168
-    Q 562 108 502 108
-    Z
-  " fill="url(#grad)"/>
-
-  <!-- INTERIOR -->
-  <path d="
-    M 184 152
-    Q 160 152 160 176
-    L 160 498
-    L 393 498
-    L 520 374
-    L 520 176
-    Q 520 152 496 152
-    Z
-  " fill="white"/>
-
-  <!-- FLECHA -->
-  <line x1="325" y1="215" x2="325" y2="355" stroke="#8b31e0" stroke-width="18" stroke-linecap="round"/>
-  <line x1="325" y1="355" x2="263" y2="301" stroke="#8b31e0" stroke-width="18" stroke-linecap="round"/>
-  <line x1="325" y1="355" x2="387" y2="301" stroke="#8b31e0" stroke-width="18" stroke-linecap="round"/>
-  <line x1="255" y1="387" x2="395" y2="387" stroke="#8b31e0" stroke-width="18" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">Twitch VOD Downloader</title>
+  <desc id="logo-desc">Marca cuadrada en cobalto con una flecha de descarga sobre una línea base</desc>
+  <path fill="#2E62E8" d="M64 0H512V448L448 512H0V64Z"/>
+  <g fill="none" stroke="#F7F9FC" stroke-width="40">
+    <path d="M256 120V344"/>
+    <path d="M168 264L256 352L344 264"/>
+    <path d="M160 416H352"/>
+  </g>
 </svg>

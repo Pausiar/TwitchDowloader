@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">Twitch VOD Downloader</title>
+  <desc id="logo-desc">Marca cuadrada en cobalto con una flecha de descarga sobre una línea base</desc>
+  <path fill="#2E62E8" d="M64 0H512V448L448 512H0V64Z"/>
+  <g fill="none" stroke="#F7F9FC" stroke-width="40">
+    <path d="M256 120V344"/>
+    <path d="M168 264L256 352L344 264"/>
+    <path d="M160 416H352"/>
+  </g>
+</svg>

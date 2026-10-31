@@ -3,69 +3,61 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Descargar directos de Twitch en MP4 | Twitch VOD Downloader</title>
+    <title>Twitch VOD Downloader: descarga VODs y clips en Windows</title>
     <meta
       name="description"
-      content="App gratuita para descargar directos de Twitch en MP4 en Windows. Pega el enlace del VOD o clip, elige carpeta y guarda el video en alta calidad con un clic."
+      content="App gratuita y de código abierto para guardar VODs y clips de Twitch en Windows. Pega el enlace, elige la carpeta y descarga el archivo."
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="google-site-verification" content="sPV9_tEW7qp17JRYdC61P2SUI9NA5Wd7lON10YflvRY" />
     <meta name="google-site-verification" content="lMgmviyzAEtdI4kk1GYr1Bmbf03BI3K5N0eMR3a0JBQ" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_ES" />
-    <meta
-      property="og:title"
-      content="Twitch VOD Downloader - Descargar directos de Twitch en MP4"
-    />
+    <meta property="og:title" content="Twitch VOD Downloader" />
     <meta
       property="og:description"
-      content="Herramienta gratuita para descargar VODs y clips de Twitch en calidad alta para edición offline."
+      content="Guarda VODs y clips de Twitch en Windows desde el enlace, en la máxima calidad que sirva el canal."
     />
-    <meta
-      property="og:image"
-      content="https://pausiar.github.io/TwitchDowloader/assets/logo.png"
-    />
+    <meta property="og:image" content="https://pausiar.github.io/TwitchDowloader/assets/og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Twitch VOD Downloader: descarga el VOD antes de que caduque" />
     <meta property="og:url" content="https://pausiar.github.io/TwitchDowloader/" />
     <meta property="og:site_name" content="Twitch VOD Downloader" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Twitch VOD Downloader" />
     <meta
-      name="twitter:image"
-      content="https://pausiar.github.io/TwitchDowloader/assets/logo.png"
+      name="twitter:description"
+      content="Guarda VODs y clips de Twitch en Windows desde el enlace."
     />
+    <meta name="twitter:image" content="https://pausiar.github.io/TwitchDowloader/assets/og-card.png" />
     <link rel="canonical" href="https://pausiar.github.io/TwitchDowloader/" />
     <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
-    <link rel="apple-touch-icon" href="assets/logo.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Twitch VOD Downloader",
-        "softwareVersion": "1.0.0",
-        "inLanguage": ["es", "en"],
+        "softwareVersion": "1.1.0",
+        "inLanguage": ["es"],
         "applicationCategory": "MultimediaApplication",
-        "operatingSystem": "Windows",
+        "operatingSystem": "Windows 10, Windows 11",
         "offers": {
           "@type": "Offer",
           "price": "0",
-          "priceCurrency": "USD"
+          "priceCurrency": "EUR"
         },
-        "downloadUrl": "https://github.com/Pausiar/TwitchDowloader/releases/download/v1.0.0/TwitchDownloader.exe",
+        "downloadUrl": "https://github.com/Pausiar/TwitchDowloader/releases/latest",
         "url": "https://pausiar.github.io/TwitchDowloader/",
-        "description": "Aplicacion gratuita para descargar directos de Twitch, VODs y clips en alta calidad (hasta 1080p 60fps) usando un enlace. Compatible con Windows, sin configuracion adicional.",
+        "description": "Aplicación gratuita para descargar VODs y clips de Twitch en Windows. Pega el enlace, elige la carpeta y guarda el archivo en la máxima calidad que sirva el canal.",
         "featureList": [
-          "Descarga VODs y clips de Twitch por URL",
-          "Calidad maxima disponible hasta 1080p 60fps",
-          "Progreso de descarga en tiempo real",
-          "Seleccion de carpeta de destino",
-          "Sin dependencias adicionales",
-          "Gratis y de codigo abierto"
+          "Descarga VODs, clips y canales de Twitch por URL",
+          "Progreso con porcentaje, velocidad y tiempo restante",
+          "Carpeta de destino a elección",
+          "Sin cuenta y sin instalador",
+          "Código abierto"
         ],
         "publisher": {
           "@type": "Organization",
@@ -80,343 +72,476 @@
         "@type": "Organization",
         "name": "Pausiar",
         "url": "https://pausiar.github.io/TwitchDowloader/",
-        "description": "Desarrollador independiente de herramientas de codigo abierto para creadores de contenido.",
-        "sameAs": [
-          "https://github.com/Pausiar"
-        ]
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "¿Por que no puedo descargar algunos directos de Twitch?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Algunos videos pueden estar restringidos por privacidad, derechos, region o estado de la cuenta. La herramienta solo funciona cuando el contenido es accesible desde el enlace publico."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Cuanto tarda en bajar un directo de 8 horas?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Depende de tu conexion y del servidor. En conexiones estables, el progreso suele mantenerse continuo y la app muestra estado de descarga en tiempo real."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Se puede convertir directos de Twitch a MP4?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Si. El descargador guarda el video en formato compatible para edicion y uso local, ideal para exportar y trabajar en PC."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Es gratis Twitch VOD Downloader?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Si, la app es completamente gratuita y de codigo abierto. Puedes revisar el codigo fuente en el repositorio de GitHub."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿En que formato se guarda el video?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "El video se guarda en el formato que ofrece directamente el servidor de Twitch, habitualmente compatible con reproductores y editores estandar en Windows."
-            }
-          }
-        ]
+        "description": "Desarrollador independiente de herramientas de código abierto para creadores de contenido.",
+        "sameAs": ["https://github.com/Pausiar"]
       }
     </script>
   </head>
   <body>
-    <header>
+    <a class="skip" href="#main">Ir al contenido</a>
+
+    <header class="site-head">
       <div class="container">
-        <div class="logo-wrap">
-          <img src="assets/logo.svg" alt="Logo Twitch VOD Downloader" class="site-logo" width="64" height="64" />
-          <span class="site-logo-title">Twitch VOD Downloader</span>
+        <div class="nav-pill">
+          <a class="brand" href="./" aria-label="Twitch VOD Downloader, inicio">
+            <img src="assets/logo.svg" alt="" width="26" height="26" />
+            <span>Twitch VOD Downloader</span>
+          </a>
+          <nav class="nav-links" aria-label="Secciones de la página">
+            <a href="#como-usar">Cómo funciona</a>
+            <a href="#vista-app">La ventana</a>
+            <a href="#guia">Límites</a>
+            <a href="#faq">Preguntas</a>
+          </nav>
+          <div class="nav-actions">
+            <a class="key" href="https://github.com/Pausiar/TwitchDowloader/releases/latest"
+              >Descargar</a
+            >
+            <details class="nav-menu">
+              <summary>Menú</summary>
+              <nav aria-label="Secciones de la página">
+                <a href="#como-usar">Cómo funciona</a>
+                <a href="#vista-app">La ventana</a>
+                <a href="#guia">Límites</a>
+                <a href="#faq">Preguntas</a>
+                <a href="faq.html">Preguntas frecuentes</a>
+              </nav>
+            </details>
+          </div>
         </div>
-        <span class="badge">Twitch Downloader 2026</span>
-        <h1>Descargar directos de Twitch en MP4 con Twitch VOD Downloader</h1>
-        <p class="subhead">
-          Twitch VOD Downloader es una app de escritorio para bajar videos de Twitch completos,
-          clips y streams pasados desde un link. Pensada para creadores, editores y usuarios que
-          quieren guardar contenido para uso personal y trabajo offline.
-        </p>
-        <nav class="quick-nav" aria-label="Navegacion de la pagina">
-          <a href="#descarga">Descarga</a>
-          <a href="#vista-app">Vista de la app</a>
-          <a href="#guia">Guia practica</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-        <div class="cta-row">
-          <a
-            class="btn btn-primary"
-            id="descarga"
-            href="https://github.com/Pausiar/TwitchDowloader/releases/download/v1.0.0/TwitchDownloader.exe"
-            >Descargar TwitchDownloader.exe</a
-          >
-          <a
-            class="btn btn-secondary"
-            href="https://github.com/Pausiar/TwitchDowloader/releases/latest"
-            >Ver ultima release</a
-          >
-        </div>
-        <p class="small">Windows .exe | Gratis | Release estable</p>
       </div>
     </header>
 
-    <main>
-      <section id="que-es">
-        <div class="container card">
-          <h2>¿Qué es Twitch VOD Downloader?</h2>
-          <p>
-            Twitch VOD Downloader es una aplicacion gratuita para Windows que descarga videos de Twitch
-            (VODs, streams pasados y clips) directamente a tu PC. Pega el enlace del video, elige la
-            carpeta de destino y la app guarda el archivo en la maxima calidad disponible — hasta 1080p 60fps —
-            en un formato compatible con Premiere Pro, DaVinci Resolve y VLC.
-          </p>
-          <p>
-            Es de codigo abierto, no requiere dependencias adicionales y esta disenada para creadores
-            de contenido, editores de video y cualquier usuario que quiera conservar contenido de Twitch
-            para uso personal offline. No esta afiliada ni respaldada por Twitch Interactive, Inc.
-          </p>
-        </div>
-      </section>
-
-      <section id="vista-app">
-        <div class="container card preview-card">
-          <h2>Asi se ve la interfaz de la aplicacion</h2>
-          <p>
-            Interfaz clara con campo de enlace, carpeta de destino, boton de descarga y progreso
-            en tiempo real para que sepas exactamente cuanto falta.
-          </p>
-          <img
-            class="app-preview"
-            src="assets/app-preview.svg"
-            alt="Captura ilustrativa de Twitch VOD Downloader mostrando URL, carpeta y progreso de descarga"
-            width="1280"
-            height="760"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </section>
-
-      <section>
-        <div class="container grid">
-          <article class="card">
-            <h3>Descargar stream de Twitch por link</h3>
-            <p>
-              Pega la URL del VOD o clip y obtén el archivo en segundos. Compatible con streams
-              pasados, clips archivados y cualquier canal público de Twitch.
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <canvas class="field" aria-hidden="true"></canvas>
+        <div class="container hero__grid">
+          <div class="hero__copy">
+            <h1 id="hero-title">Del enlace de Twitch al archivo.</h1>
+            <p class="lead">
+              Guarda VODs y clips en la máxima calidad que sirva el canal.
             </p>
-          </article>
-          <article class="card">
-            <h3>Twitch downloader 1080p 60fps</h3>
-            <p>
-              Obtiene la mejor calidad disponible del servidor. Ideal para editar highlights,
-              conservar streams completos o exportar clips en resolución máxima para producción.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Twitch leecher alternativo</h3>
-            <p>
-              Interfaz simple, rápida y sin dependencias extra. Abre la app, pega el enlace y
-              guarda el video en la carpeta que prefieras sin pasos adicionales.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="como-usar">
-        <div class="container card">
-          <h2>Cómo usar Twitch VOD Downloader en 5 pasos</h2>
-          <p>
-            El proceso no requiere instalación adicional de dependencias ni configuración técnica.
-            Sigue estos pasos para guardar cualquier VOD o clip de Twitch en tu PC:
-          </p>
-          <ol class="klist">
-            <li><strong>Descarga e instala la app</strong>: ejecuta <code>TwitchDownloader.exe</code> desde la release oficial de GitHub.</li>
-            <li><strong>Copia el enlace del VOD o clip</strong>: busca el video en Twitch y copia la URL completa desde tu navegador.</li>
-            <li><strong>Pega el link en la app</strong>: abre la aplicación y pégalo en el campo "Link del VOD de Twitch".</li>
-            <li><strong>Elige carpeta de destino</strong>: pulsa "Examinar" para seleccionar dónde guardar el archivo en tu PC.</li>
-            <li><strong>Inicia la descarga</strong>: pulsa "Descargar en Máxima Calidad" y espera a que la barra de progreso complete el proceso.</li>
-          </ol>
-          <p>
-            Al finalizar, el video estará en tu equipo en un formato compatible con Premiere Pro,
-            DaVinci Resolve, VLC y cualquier editor o reproductor estándar.
-          </p>
-        </div>
-      </section>
-
-      <section id="guia">
-        <div class="container card">
-          <h2>Guia practica y criterios de uso responsable</h2>
-          <p>
-            Si necesitas una explicacion mas completa, hemos preparado una guia editorial con
-            recomendaciones de calidad, errores frecuentes y limites tecnicos habituales al
-            descargar VODs de Twitch.
-          </p>
-          <p>
-            Esta guia incluye procedimientos paso a paso para comprobar si un enlace es valido,
-            consejos para evitar archivos incompletos y pautas de cumplimiento de derechos de
-            autor para uso personal.
-          </p>
-          <ul class="klist">
-            <li>Checklist previo: visibilidad del VOD, estado del canal y disponibilidad regional.</li>
-            <li>Diagnostico de fallos: enlaces rotos, restricciones y cortes por conexion inestable.</li>
-            <li>Buenas practicas para archivar y editar material propio sin perder calidad.</li>
-            <li>Recomendaciones de cumplimiento: uso legitimo, permisos y respeto a terminos de servicio.</li>
-          </ul>
-          <p>
-            <a class="btn btn-secondary" href="guia-descarga-responsable.html"
-              >Leer guia completa de descarga responsable</a
+            <div class="hero__actions">
+              <a
+                id="descarga"
+                class="key key--primary"
+                href="https://github.com/Pausiar/TwitchDowloader/releases/latest"
+                >Descargar para Windows</a
+              >
+              <a class="link-quiet" href="https://github.com/Pausiar/TwitchDowloader">Ver el código</a>
+            </div>
+            <p class="hero__note">Gratis, sin cuenta y sin instalador. Windows 10 u 11.</p>
+          </div>
+          <div class="hero__proof">
+            <figure
+              class="shot shot--hero"
+              data-slot="hero-app"
+              data-kind="product"
+              data-alt="La app con una descarga en curso: porcentaje, velocidad y carpeta de destino"
             >
-          </p>
-          <p class="small">
-            Contenido revisado por el mantenedor del proyecto. Ultima actualizacion: 25 de mayo de 2026.
-          </p>
+              <picture>
+                <source
+                  media="(max-width: 30rem)"
+                  srcset="assets/screens/app-hero-downloading-mobile.png"
+                  width="380"
+                  height="175"
+                />
+                <img
+                  src="assets/screens/app-hero-downloading.png"
+                  width="780"
+                  height="512"
+                  alt="La ventana de la app durante una descarga al 67 %: 33,6 MB/s, faltan 14 s, guardando en C:\Users\Public\Downloads."
+                  fetchpriority="high"
+                  decoding="async"
+                />
+              </picture>
+            </figure>
+            <p class="caption">Captura real: 67 % a 33,6 MB/s, faltan 14 s.</p>
+          </div>
         </div>
       </section>
 
-      <section>
-        <div class="container card">
-          <h2>Una app pensada para creadores y editores</h2>
-          <p>
-            Si buscabas una forma sencilla de guardar directos de Twitch, esta herramienta te
-            permite bajar videos completos y clips desde un enlace. Funciona como Twitch
-            VOD downloader y tambien como Twitch clip downloader para quienes quieren conservar
-            contenido en local sin configuraciones complicadas.
-          </p>
-          <p>
-            Muchos usuarios la utilizan para guardar streams pasados de Twitch por link, convertir
-            directos a MP4 y exportar material a PC para edicion. Es una opcion practica
-            para preparar highlights offline y trabajar con videos en alta calidad.
-          </p>
-          <p>
-            <strong>Casos de uso habituales:</strong>
-          </p>
-          <ul class="klist">
-            <li>Guardar emisiones antes de que sean eliminadas del canal.</li>
-            <li>Preparar material para edicion en Premiere Pro, DaVinci Resolve o CapCut.</li>
-            <li>Extraer segmentos para crear reels, compilaciones o clips cortos.</li>
-            <li>Conservar VODs de eventos, torneos o streams especiales para consultarlos sin conexion.</li>
-            <li>Hacer copia de seguridad del contenido propio antes de publicarlo en otras plataformas.</li>
-            <li>Trabajar con el video sin necesidad de conexion durante el proceso de edicion.</li>
-          </ul>
-          <p>
-            En resumen, es una alternativa moderna para quien busca herramientas tipo Twitch
-            leecher alternativo y necesita una app estable para 2026, con enfoque en facilidad de
-            uso y descarga gratuita en Windows.
-          </p>
-          <p>
-            <strong>Flujo recomendado:</strong> abre la app, pega el enlace del stream o clip,
-            selecciona carpeta y pulsa el boton. No necesitas configuraciones avanzadas ni pasos
-            complejos para obtener el archivo local listo para editar o archivar.
-          </p>
-          <p>
-            Si vienes de buscar como guardar un directo de Twitch de otra persona, esta pagina
-            resume el proceso de forma clara y centrada en uso personal responsable. El video
-            queda en tu equipo con la calidad original disponible en el servidor.
-          </p>
+      <section class="section section--split" id="como-usar" aria-labelledby="map-title">
+        <div class="container grid12">
+          <div class="copy-col">
+            <h2 id="map-title">Del enlace al archivo</h2>
+            <p class="lead">
+              yt-dlp escribe el archivo donde elijas.
+            </p>
+            <dl class="facts">
+              <div>
+                <dt>Entrada</dt>
+                <dd>VODs, clips y canales</dd>
+              </div>
+              <div>
+                <dt>Salida</dt>
+                <dd>Un vídeo en tu carpeta</dd>
+              </div>
+              <div>
+                <dt>Calidad</dt>
+                <dd>La máxima de Twitch</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="map" role="group" aria-label="Ejemplo de una URL de Twitch convertida en un archivo MP4">
+            <div class="map__pane">
+              <span class="map__label">Lo que pegas</span>
+              <code class="map__code">https://www.twitch.tv/videos/2468101214</code>
+            </div>
+            <div class="map__seam"><span>yt-dlp</span></div>
+            <div class="map__pane">
+              <span class="map__label">Lo que queda</span>
+              <code class="map__code">VOD destacado.mp4</code>
+              <code class="map__path">C:\Users\Public\Downloads</code>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="faq">
+      <section class="section section--states" id="vista-app" aria-labelledby="states-title">
+        <div class="container grid12">
+          <div class="copy-col">
+            <h2 id="states-title">La misma ventana, tres estados</h2>
+            <p class="lead">Lo que ves antes de empezar, al terminar y cuando Twitch dice que no.</p>
+          </div>
+          <div class="switch" data-tabs>
+            <div class="tabs" role="tablist" aria-label="Estados de la app">
+              <button
+                type="button"
+                role="tab"
+                id="tab-listo"
+                aria-selected="true"
+                aria-controls="panel-listo"
+              >
+                Listo
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id="tab-terminado"
+                aria-selected="false"
+                aria-controls="panel-terminado"
+                tabindex="-1"
+              >
+                Terminado
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id="tab-error"
+                aria-selected="false"
+                aria-controls="panel-error"
+                tabindex="-1"
+              >
+                Error
+              </button>
+            </div>
+            <div id="panel-listo" role="tabpanel" aria-labelledby="tab-listo" tabindex="0">
+              <figure
+                class="shot"
+                data-slot="app-listo"
+                data-kind="product"
+                data-alt="La app lista, con un enlace válido y la carpeta elegida"
+              >
+                <img
+                  src="assets/screens/app-idle.png"
+                  width="820"
+                  height="660"
+                  alt="Estado listo: enlace válido, carpeta C:\Users\Public\Downloads y el botón Descargar."
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <p class="caption">El enlace se valida antes de pulsar Descargar.</p>
+            </div>
+            <div id="panel-terminado" role="tabpanel" aria-labelledby="tab-terminado" tabindex="0">
+              <figure
+                class="shot"
+                data-slot="app-terminado"
+                data-kind="product"
+                data-alt="La app con una descarga completada y el botón Abrir carpeta"
+              >
+                <img
+                  src="assets/screens/app-done.png"
+                  width="820"
+                  height="660"
+                  alt="Estado terminado: descarga completada, archivo listo y botón Abrir carpeta."
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <p class="caption">Al terminar, el archivo queda en la carpeta elegida.</p>
+            </div>
+            <div id="panel-error" role="tabpanel" aria-labelledby="tab-error" tabindex="0">
+              <figure
+                class="shot"
+                data-slot="app-error"
+                data-kind="product"
+                data-alt="La app mostrando el error VOD no disponible"
+              >
+                <img
+                  src="assets/screens/app-error.png"
+                  width="820"
+                  height="660"
+                  alt="Estado de error: VOD no disponible, con la indicación de revisar el enlace."
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <p class="caption">Un VOD restringido se explica sin cerrar la ventana.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--limits" id="guia" aria-labelledby="limits-title">
         <div class="container">
-          <h2>Preguntas frecuentes</h2>
-          <article class="faq-item">
-            <h3>¿Por que no puedo descargar algunos directos?</h3>
-            <p>
-              Algunos VODs no estan disponibles por configuracion del canal, restricciones de
-              region, borrado del contenido o derechos de terceros.
-            </p>
-          </article>
-          <article class="faq-item">
-            <h3>¿Cuanto tarda en bajar un directo de 8 horas?</h3>
-            <p>
-              Depende del tamaño del video y de tu velocidad de internet. En la app puedes ver el
-              progreso en tiempo real para estimar la finalizacion.
-            </p>
-          </article>
-          <article class="faq-item">
-            <h3>¿Sirve para editar videos despues?</h3>
-            <p>
-              Si. Es util para guardar directos, crear compilaciones y trabajar
-              material offline en tu PC.
-            </p>
-          </article>
-          <article class="faq-item">
-            <h3>¿Es gratis Twitch VOD Downloader?</h3>
-            <p>
-              Si, la app es completamente gratuita y de codigo abierto. Puedes revisar el codigo
-              fuente en el repositorio de GitHub sin ninguna restriccion.
-            </p>
-          </article>
-          <article class="faq-item">
-            <h3>¿En que formato se guarda el video?</h3>
-            <p>
-              El video se guarda en el formato que ofrece directamente el servidor de Twitch,
-              habitualmente compatible con reproductores y editores estandar en Windows.
-              No requiere conversion adicional para importarlo en tu software de edicion.
-            </p>
-          </article>
+          <div class="limits__head">
+            <h2 id="limits-title">No salta restricciones.</h2>
+            <p class="lead">Solo lo que tu cuenta puede ver.</p>
+          </div>
+          <div class="limits__items">
+            <div>
+              <h3>Privado o de pago</h3>
+              <p>Si el canal lo limita, no se guarda nada.</p>
+            </div>
+            <div>
+              <h3>Caducado</h3>
+              <p>Twitch borra VODs; un enlace muerto no tiene archivo.</p>
+            </div>
+            <div>
+              <h3>De otra persona</h3>
+              <p>Una copia local no te da permiso para publicarla.</p>
+            </div>
+          </div>
+          <p class="limits__link">
+            <a class="key" href="guia-descarga-responsable.html">Guía de uso responsable</a>
+          </p>
         </div>
       </section>
 
-      <section>
-        <div class="container notice">
-          Uso responsable: esta herramienta esta pensada para uso personal. Respeta siempre los
-          derechos de autor, licencias y terminos de servicio de Twitch y de cada creador.
+      <section class="section section--faq" id="faq" aria-labelledby="faq-title">
+        <div class="container grid12">
+          <div class="faq__head">
+            <h2 id="faq-title">Antes de descargar</h2>
+          </div>
+          <div class="faq__rows">
+            <article>
+              <h3>¿Hace falta instalar algo más?</h3>
+              <p>No: el .exe incluye el motor y pide Windows.</p>
+            </article>
+            <article>
+              <h3>¿Cuánto tarda y en qué formato queda?</h3>
+              <p>Depende del tamaño y la conexión. Se guarda el archivo de Twitch, normalmente MP4, sin recodificar.</p>
+            </article>
+            <article>
+              <h3>¿Por qué falla un VOD antiguo?</h3>
+              <p>Twitch lo borró o restringió; la app lo explica.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="band" aria-labelledby="close-title">
+        <div class="container band__grid">
+          <div>
+            <h2 id="close-title">Llévate el archivo.</h2>
+            <p class="lead">Un .exe portable. Se descarga, se abre y se usa.</p>
+          </div>
+          <div class="band__actions">
+            <a class="key key--primary" href="https://github.com/Pausiar/TwitchDowloader/releases/latest"
+              >Descargar para Windows</a
+            >
+            <a class="link-quiet" href="https://github.com/Pausiar/TwitchDowloader/releases">Ver las versiones</a>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer>
+    <footer class="site-foot">
       <div class="container">
-        <p>
-          Proyecto de codigo abierto en
-          <a href="https://github.com/Pausiar/TwitchDowloader">GitHub</a>. Si quieres la version
-          mas reciente, visita la pagina de releases. Tambien puedes ir al
-          <a href="#descarga">boton de descarga</a> o volver a la <a href="#vista-app">vista de la app</a>.
-        </p>
-        <nav class="footer-links" aria-label="Enlaces legales y de ayuda">
-          <a href="guia-descarga-responsable.html">Guia de uso responsable</a>
-          <a href="faq.html">FAQ</a>
-          <a href="politica-privacidad.html">Politica de privacidad</a>
-          <a href="politica-cookies.html">Politica de cookies</a>
+        <div class="foot__top">
+          <a class="brand brand--foot" href="./" aria-label="Twitch VOD Downloader, inicio">
+            <img src="assets/logo.svg" alt="" width="28" height="28" />
+            <span>Twitch VOD Downloader</span>
+          </a>
+          <p class="foot__line">
+            Proyecto independiente de Pausiar. Descarga con yt-dlp, de código abierto. No está
+            afiliado ni respaldado por Twitch Interactive, Inc.
+          </p>
+        </div>
+        <nav class="foot__links" aria-label="Legal y ayuda">
           <a href="aviso-legal.html">Aviso legal</a>
+          <a href="politica-privacidad.html">Privacidad</a>
+          <a href="politica-cookies.html">Cookies</a>
+          <a href="terminos.html">Términos</a>
+          <a href="guia-descarga-responsable.html">Guía</a>
+          <a href="faq.html">Preguntas</a>
+          <a href="https://github.com/Pausiar/TwitchDowloader">GitHub</a>
         </nav>
-        <button class="cookie-preferences-btn" type="button" data-cookie-preferences>
-          Cambiar consentimiento de cookies
-        </button>
+        <div class="foot__base">
+          <p>© 2026 Pausiar</p>
+          <a href="#descarga">Volver a la descarga</a>
+          <button class="foot__prefs" type="button" data-cookie-preferences>
+            Cambiar consentimiento de cookies
+          </button>
+        </div>
       </div>
     </footer>
 
-    <aside class="cookie-banner" id="cookie-banner" hidden aria-live="polite">
-      <div class="container cookie-banner-inner">
-        <div>
-          <p class="cookie-title">Cookies y privacidad</p>
-          <p class="cookie-copy">
-            Este sitio solo cargara cookies publicitarias de Google AdSense si las aceptas.
-            Puedes revisar la <a href="politica-cookies.html">politica de cookies</a>, la
-            <a href="politica-privacidad.html">politica de privacidad</a> y el
-            <a href="aviso-legal.html">aviso legal</a> antes de decidir.
-          </p>
-        </div>
-        <div class="cookie-actions">
-          <button class="btn btn-consent" id="cookie-accept" type="button">Aceptar</button>
-          <button class="btn btn-consent" id="cookie-reject" type="button">Rechazar</button>
-        </div>
+    <aside class="consent" id="cookie-banner" hidden aria-labelledby="consent-title">
+      <p class="consent__title" id="consent-title">Cookies</p>
+      <p class="consent__copy">
+        Cookies de AdSense solo si aceptas. Política de <a href="politica-cookies.html">cookies</a>
+        y de <a href="politica-privacidad.html">privacidad</a>.
+      </p>
+      <div class="consent__actions">
+        <button class="key" id="cookie-accept" type="button">Aceptar</button>
+        <button class="key" id="cookie-reject" type="button">Rechazar</button>
       </div>
     </aside>
+
     <script src="cookie-consent.js" defer></script>
+    <script>
+      (function () {
+        var tabs = document.querySelector("[data-tabs]");
+        if (tabs) {
+          var buttons = Array.prototype.slice.call(tabs.querySelectorAll('[role="tab"]'));
+          var panels = buttons.map(function (b) {
+            return document.getElementById(b.getAttribute("aria-controls"));
+          });
+          function select(index, focus) {
+            buttons.forEach(function (b, i) {
+              var on = i === index;
+              b.setAttribute("aria-selected", on ? "true" : "false");
+              b.tabIndex = on ? 0 : -1;
+              panels[i].hidden = !on;
+            });
+            if (focus) buttons[index].focus();
+          }
+          buttons.forEach(function (b, i) {
+            b.addEventListener("click", function () {
+              select(i, false);
+            });
+            b.addEventListener("keydown", function (e) {
+              var next = e.key === "ArrowRight" ? i + 1 : e.key === "ArrowLeft" ? i - 1 : null;
+              if (next === null) return;
+              e.preventDefault();
+              select((next + buttons.length) % buttons.length, true);
+            });
+          });
+          select(0, false);
+        }
+
+        var field = document.querySelector(".field");
+        if (field && field.getContext) {
+          var ctx = field.getContext("2d");
+          var styles = getComputedStyle(document.documentElement);
+          var ink1 = styles.getPropertyValue("--color-glyph-2").trim();
+          var ink2 = styles.getPropertyValue("--color-glyph-3").trim();
+          var ink3 = styles.getPropertyValue("--color-glyph-4").trim();
+          var mono = styles.getPropertyValue("--font-outlier").trim();
+          var seed = 1789;
+          var random = function () {
+            seed = (seed * 1664525 + 1013904223) >>> 0;
+            return seed / 4294967296;
+          };
+          var draw = function () {
+            var box = field.getBoundingClientRect();
+            var dpr = Math.min(window.devicePixelRatio || 1, 2);
+            field.width = Math.round(box.width * dpr);
+            field.height = Math.round(box.height * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.clearRect(0, 0, box.width, box.height);
+            if (box.width < 960) return;
+            var cw = 8;
+            var ch = 16;
+            var cols = Math.floor(box.width / cw);
+            var rows = Math.floor(box.height / ch);
+            var ramp = ".:-=+*#";
+            var center = Math.round(rows * 0.47);
+            var smooth = function (v) { return v * v * (3 - 2 * v); };
+            ctx.font = "500 12px " + mono;
+            ctx.textBaseline = "top";
+            seed = 1789;
+            for (var x = 0; x < cols; x++) {
+              var t = x / cols;
+              if (t < 0.42) {
+                var raw = 0.05 + 0.05 * (t / 0.42);
+                for (var y = 0; y < rows; y++) {
+                  if (random() > raw) continue;
+                  ctx.fillStyle = random() > 0.6 ? ink2 : ink1;
+                  ctx.globalAlpha = 0.5;
+                  ctx.fillText(ramp.charAt(Math.floor(random() * ramp.length)), x * cw, y * ch);
+                }
+                continue;
+              }
+              if (t < 0.86) {
+                var k = smooth((t - 0.42) / 0.44);
+                var half = rows * (0.30 - 0.14 * k);
+                var pool = k < 0.35 ? ramp : k < 0.7 ? ramp.slice(2) : "=+";
+                for (var sy = Math.ceil(center - half); sy <= center + half; sy++) {
+                  var edge = Math.abs(sy - center) / half;
+                  if (random() > (0.14 + 0.22 * k) * (1 - edge * 0.7)) continue;
+                  ctx.fillStyle = edge < 0.4 ? ink2 : ink1;
+                  ctx.globalAlpha = 0.45 + 0.25 * k;
+                  ctx.fillText(pool.charAt(Math.floor(random() * pool.length)), x * cw, sy * ch);
+                }
+                continue;
+              }
+              if (t > 0.98) continue;
+              var top = Math.ceil(center - rows * 0.2);
+              var bottom = Math.ceil(center + rows * 0.2);
+              for (var ry = top; ry <= bottom; ry += 2) {
+                ctx.fillStyle = ink3;
+                ctx.globalAlpha = 0.55;
+                ctx.fillText("=", x * cw, ry * ch);
+              }
+            }
+            ctx.globalAlpha = 0.3;
+            ctx.fillStyle = ink2;
+            for (var dx = Math.floor(cols * 0.42); dx < Math.floor(cols * 0.86); dx += 4) {
+              ctx.fillText("·", dx * cw, center * ch);
+            }
+            ctx.globalAlpha = 1;
+          };
+          draw();
+          var pending = false;
+          new ResizeObserver(function () {
+            if (pending) return;
+            pending = true;
+            requestAnimationFrame(function () {
+              pending = false;
+              draw();
+            });
+          }).observe(field);
+        }
+
+        window.hallmarkSlots = function (m) {
+          for (var k in m) {
+            var slot = document.querySelector('[data-slot="' + k + '"]');
+            if (!slot) continue;
+            var im = new Image();
+            im.src = typeof m[k] === "string" ? m[k] : m[k].src;
+            im.alt = (typeof m[k] === "object" && m[k].alt) || slot.dataset.alt || "";
+            slot.querySelectorAll(":scope > img, :scope > picture").forEach(function (o) {
+              o.remove();
+            });
+            slot.prepend(im);
+          }
+        };
+        document.querySelectorAll("[data-slot] img").forEach(function (i) {
+          if (i.complete && !i.naturalWidth) i.remove();
+          else
+            i.addEventListener(
+              "error",
+              function () {
+                i.remove();
+              },
+              { once: true }
+            );
+        });
+      })();
+    </script>
   </body>
 </html>
